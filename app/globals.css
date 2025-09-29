@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS for Nitionz Website */
+
+/* Slideshow Styles */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  background-attachment: fixed;
+  will-change: opacity;
+  backface-visibility: hidden;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .slide {
+    background-attachment: scroll;
+  }
+}
+
+/* Collapsible Hero Content */
+.hero-content-expanded {
+  transform: translateX(0) !important;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mobile Menu Animation */
+.mobile-menu-open {
+  transform: translateY(0) !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e40af;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1d4ed8;
+}
+
+/* Skip to content link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #1e40af;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .slide,
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Performance Optimizations */
+img {
+  loading: lazy;
+  decoding: async;
+}
+
+/* Critical CSS for above-the-fold content */
+.hero-section {
+  contain: layout style paint;
+}
+
+/* Backdrop Blur Support */
+.backdrop-blur-fallback {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  .backdrop-blur-fallback {
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+  }
+}

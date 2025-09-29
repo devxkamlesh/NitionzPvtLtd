@@ -51,6 +51,84 @@ A modern, SEO-optimized Next.js website for Nitionz Pvt Ltd - a secure fixed dep
 - **Icons**: Lucide React
 - **Deployment**: Vercel (recommended)
 
+## Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Firebase project setup
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd nitionz-nextjs
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Firebase Setup**
+   - The Firebase configuration is already set up using the credentials from Design Flow.md
+   - Make sure your Firebase project has the following collections:
+     - `users` - for user data and KYC information
+     - `contact_submissions` - for contact form submissions
+     - `orders` - for investment orders (future implementation)
+
+4. **Environment Variables**
+   - Copy `.env.local.example` to `.env.local`
+   - The Firebase config is already included
+
+5. **Run development server**
+   ```bash
+   npm run dev
+   ```
+
+6. **Open in browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+### Firebase Collections Setup
+
+The application expects these Firestore collections:
+
+#### `contact_submissions`
+```javascript
+{
+  name: string,
+  email: string,
+  phone: string,
+  subject: string,
+  message: string,
+  timestamp: serverTimestamp(),
+  status: 'new' | 'read' | 'replied',
+  submittedAt: string,
+  source: string,
+  userAgent: string,
+  url: string
+}
+```
+
+#### `users`
+```javascript
+{
+  name: string,
+  email: string,
+  phone: string,
+  createdAt: Date,
+  kyc: {
+    status: 'not_submitted' | 'pending' | 'approved' | 'rejected',
+    docs: [],
+    submittedAt: Date | null,
+    reviewedAt: Date | null,
+    reviewedBy: string | null,
+    comment: string
+  },
+  role: 'user' | 'admin'
+}
+```
 
 ## Project Structure
 
